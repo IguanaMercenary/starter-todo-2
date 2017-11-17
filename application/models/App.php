@@ -47,26 +47,30 @@ return isset($which) ?
 }
 
 public function group($which = null) {
-return isset($which) ?
-    (isset($this->groups[$which]) ? $this->groups[$which] : 'Unknown') :
+    $val = (int)$which;
+return isset($val) ?
+    (isset($this->groups[$val]) ? $this->groups[$val] : 'Unknown') :
     $this->groups;
 }
 
 public function priority($which = null) {
-return isset($which) ?
-    (isset($this->priorities[$which]) ? $this->priorities[$which] : 'Unknown') :
+    $val = (int)$which;
+return isset($val) ?
+    (isset($this->priorities[$val]) ? $this->priorities[$val] : 'Unknown') :
     $this->priorities;
 }
 
 public function size($which = null) {
+    $val = (int)$which;
 return isset($which) ?
-    (isset($this->sizes[$which]) ? $this->sizes[$which] : 'Unknown') :
+    (isset($this->sizes[$val]) ? $this->sizes[$val] : 'Unknown') :
     $this->sizes;
 }
 
 public function status($which = null) {
-return isset($which) ?
-    (isset($this->statuses[$which]) ? $this->statuses[$which] : '') :
+    $val = (int)$which;
+return isset($val) ?
+    (isset($this->statuses[$val]) ? $this->statuses[$val] : '') :
     $this->statuses;
 }
 

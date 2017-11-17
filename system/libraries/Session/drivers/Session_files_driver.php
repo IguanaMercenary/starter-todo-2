@@ -245,7 +245,7 @@ class CI_Session_files_driver extends CI_Session_driver implements SessionHandle
 		}
 		elseif ($this->_fingerprint === md5($session_data))
 		{
-			return ( ! $this->_file_new && ! touch($this->_file_path.$session_id))
+			return ( ! $this->_file_new && !touch($this->_file_path.$session_id))
 				? $this->_failure
 				: $this->_success;
 		}

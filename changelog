@@ -66,3 +66,14 @@ Release Date: Nov 5, 2017
     Added Entity
     Added magic function set into Entity
 
+## *Version 2.0*
+
+## New Components
+    - XML_Model.php to handle XML files
+
+
+## Updated Components
+    - core/MY_Model.php: include_once XML_Model.php
+    - models/App.php: makes sure that the values taken are integers
+    - models/Tasks.php: Uses XML_Model instead of CSV_Model
+    - tasks.xml: ID's written as an object

@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <Tasks>
-    <tasks id="1">
+    <tasks>
+        <id>1</id>
         <task>COMP1234 assignment</task>
         <priority>3</priority>
         <size>2</size>
@@ -10,7 +11,8 @@
         <status>1</status>
         <flag></flag>
     </tasks>
-    <tasks id="2">
+    <tasks>
+        <id>2</id>
         <task>Mow the lawn</task>
         <priority>2</priority>
         <size>2</size>
@@ -19,7 +21,8 @@
         <status>2</status>
         <flag></flag>
     </tasks>
-    <tasks id="3">
+    <tasks>
+        <id>3</id>
         <task>Wash the car</task>
         <priority>2</priority>
         <size>2</size>
@@ -28,7 +31,8 @@
         <status>2</status>
         <flag></flag>
     </tasks>
-    <tasks id="4">
+    <tasks>
+        <id>4</id>
         <task>Paint the fence</task>
         <priority>1</priority>
         <size>2</size>
@@ -37,7 +41,8 @@
         <status></status>
         <flag></flag>
     </tasks>
-    <tasks id="6">
+    <tasks>
+        <id>6</id>
         <task>Intramural hockey game</task>
         <priority>1</priority>
         <size>2</size>
@@ -46,7 +51,8 @@
         <status></status>
         <flag></flag>
     </tasks>
-    <tasks id="8">
+    <tasks>
+        <id>8</id>
         <task>Buy steel-toed boots</task>
         <priority>2</priority>
         <size>1</size>
