@@ -44,34 +44,56 @@ class XML_Model extends Memory_Model {
 	 * Load the collection state appropriately, depending on persistence choice.
 	 * OVER-RIDE THIS METHOD in persistence choice implementations
 	 */
-	protected function load()
-	{
-            $xml = simplexml_load_file($this->_origin);
-            
-            foreach ($xml->tasks as $task) {
-                $key = intval($task->id);
-                $test = $task->priority;
-                $task->priority = (int)$test;
-                $this->_data[$key] = $task;
-            }
-	}
+	
+    protected function load()
+    {
+        if(file_exists($this->_origin)){
 
-	/**
-	 * Store the collection state appropriately, depending on persistence choice.
-	 * OVER-RIDE THIS METHOD in persistence choice implementations
-	 */
-	protected function store()
-	{
-		// rebuild the keys table
-		$this->reindex();
-		//---------------------
-		if (($handle = fopen($this->_origin, "w")) !== FALSE)
-		{
-			fputcsv($handle, $this->_fields);
-			foreach ($this->_data as $key => $record)
-				fputcsv($handle, array_values((array) $record));
-			fclose($handle);
-		}
-		// --------------------
-	}
+            $tasks = simplexml_load_file($this->_origin);
+
+            $tmp = array();
+            $holdname = 'task';
+            foreach($tasks->children()->children() as $child){
+
+
+                array_push($tmp,(string)$child->getName());
+                
+            }
+            $this->_fields = $tmp;
+
+
+            foreach($tasks->children() as $childtask){
+                $record = new stdClass();
+                $i = 0;
+                foreach($childtask->children() as $sechitask){
+                    $record->{$this->_fields[$i]} = (string)$sechitask;
+                    $i++;
+                }
+                $key = $record->{$this->_keyfield};
+                $this->_data{$key} = $record;
+
+            }
+
+
+
+        }
+        $this->reindex();
+
+    }
+    protected function store()
+    {
+        $xml = new SimpleXMLElement("<tasks></tasks>");
+        if (file_exists($this->_origin)) {
+            foreach ($this->_data as $key => $record) {
+                $holdtask = $xml->addChild("task");
+                for ($i = 0; $i < count($this->_fields); $i++) {
+
+                    $holdtask->addChild($this->_fields[$i], $record->{$this->_fields[$i]});
+                    
+
+                }
+            }
+            $xml->asXml($this->_origin);
+        }
+    }
 }
